@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Personal Homepage | Simple & Elegant</title>
+    <!-- 现代柔和风格，干净排版，占位符内容明显但可编辑 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #f5f7fe 0%, #e9eef5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        /* 极简卡片容器 */
+        .card {
+            max-width: 680px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 2rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(0px);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 2.5rem 2rem;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .card:hover {
+            box-shadow: 0 25px 40px -14px rgba(0, 0, 0, 0.12);
+        }
+
+        /* 头像/首字母装饰 (极简圆标) */
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(120deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 18px rgba(59,130,246,0.2);
+        }
+        .avatar span {
+            font-size: 2.4rem;
+            font-weight: 500;
+            color: white;
+            letter-spacing: 0.5px;
+        }
+
+        /* 占位符区域样式 — 清晰展示待填充内容 */
+        .placeholder-field {
+            margin-top: 1.2rem;
+            border-bottom: 1.5px dashed #cbd5e1;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+            font-size: 1.2rem;
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .name-placeholder {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #0f172a, #334155);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin: 0.75rem 0 0.25rem 0;
+            display: inline-block;
+            border-bottom: 2px dotted #a5b4fc;
+            padding-bottom: 4px;
+        }
+
+        .email-placeholder {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 1rem;
+            background: #f1f5f9;
+            padding: 0.5rem 1rem;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #1e293b;
+            border: 1px solid #e2e8f0;
+            backdrop-filter: blur(2px);
+            margin-top: 0.5rem;
+        }
+
+        .email-icon {
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+
+        .tagline {
+            margin-top: 1.8rem;
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-left: 3px solid #8b5cf6;
+            padding-left: 1rem;
+            background: #f8fafc;
+            border-radius: 0 12px 12px 0;
+        }
+
+        hr {
+            margin: 1.8rem 0 1.2rem;
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, #e2e8f0, #cbd5e1, #e2e8f0);
+        }
+
+        .note {
+            font-size: 0.8rem;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 1.8rem;
+        }
+
+        .badge {
+            background: #eef2ff;
+            padding: 0.2rem 0.6rem;
+            border-radius: 40px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #4338ca;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.8rem 1.25rem;
+            }
+            .name-placeholder {
+                font-size: 1.8rem;
+            }
+            .placeholder-field {
+                font-size: 1rem;
+            }
+            .avatar {
+                width: 65px;
+                height: 65px;
+            }
+            .avatar span {
+                font-size: 2rem;
+            }
+        }
+
+        /* 占位符内容支持高亮示意，但仍然是可编辑占位风格 */
+        .placeholder-value {
+            background: #fef9e3;
+            padding: 0 0.2rem;
+            border-radius: 8px;
+            color: #854d0e;
+            font-weight: 500;
+        }
+
+        .interactive-note {
+            font-size: 0.75rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: #94a3b8;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .copy-hint {
+            cursor: pointer;
+            transition: 0.1s;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <!-- 简约头像装饰，不抢占信息但增加视觉 -->
+    <div class="avatar">
+        <span>👤</span>
+    </div>
+
+    <!-- 姓名占位符 — 清晰标注“Your Name”格式，方便用户替换 -->
+    <div>
+        <div class="placeholder-field">📛 NAME</div>
+        <div class="name-placeholder" id="namePlaceholder">Yixin Luo</div>
+        <div class="interactive-note" style="text-align:left; margin-top:4px;">✨ <em>placeholder — edit in code: <span style="background:#f1f5f9; padding:0 4px; border-radius:6px;">&lt;Your Full Name&gt;</span></em></div>
+    </div>
+
+    <!-- 邮箱占位符区域，显式占位风格 -->
+    <div style="margin-top: 1.8rem;">
+        <div class="placeholder-field">📧 EMAIL</div>
+        <div class="email-placeholder" id="emailPlaceholder">
+            <span class="email-icon">✉️</span>
+            <span id="emailAddress">22307110294@m.fudan.edu.cn</span>
+        </div>
+        <div class="interactive-note" style="text-align:left; margin-top:6px;">🔁 placeholder email: <span style="background:#f1f5f9; padding:0 6px; border-radius:12px;">your@email.com</span> (replace easily)</div>
+    </div>
+
+    <!-- 简介或状态栏（可选，保持干净但仍为占位风格） -->
+    <div class="tagline">
+        🌱 Currently crafting meaningful digital experiences · Open for collaboration
+    </div>
+
+    <hr />
+
+    <!-- 简单联系方式占位与 github 示意（进一步提升占位丰富度但依然是占位符风格） -->
+    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+        <div class="badge">📍 San Francisco, CA</div>
+        <div class="badge">💼 Research / Dev</div>
+        <div class="badge">🌟 Open to work</div>
+    </div>
+    
+    <!-- 社交占位简讯 (无外部链接压力，仅为展示设计) -->
+    <div class="note">
+        <span>🔗 github.com/</span><span class="placeholder-value" style="background:#eef2ff;">your-username</span>
+        <span>•</span>
+        <span>🐦 @</span><span class="placeholder-value">yourhandle</span>
+    </div>
+    <div class="interactive-note" style="margin-top: 1rem; border-top: 1px solid #eef2ff; padding-top: 1rem;">
+        💡 This page is a <strong>placeholder template</strong> — replace the name, email, and any detail with your own info. 
+        Designed with clarity & lightness.
+    </div>
+</div>
+
+<!-- 简单增加控制台友好提醒：占位符只是演示，无复杂脚本，但方便用户理解替换逻辑 -->
+<script>
+    (function() {
+        // 非常轻量的控制台提醒，仅用于提示用户可修改内容。
+        // 完全不影响视觉占位符的设计，只是增加开发友好性。
+        const nameSpan = document.getElementById('namePlaceholder');
+        const emailSpan = document.getElementById('emailAddress');
+        
+        // 让占位符更加明显，如果是占位符内容则可以双击提示替换方式（极简帮助）
+        const addHelperHint = (element, type) => {
+            if (!element) return;
+            element.style.cursor = "pointer";
+            element.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (type === 'name') {
+                    alert('✏️ Replace "Alex Johnson" with your real name.\nYou can edit the HTML directly and change the text inside <span id="namePlaceholder">Your Name</span>');
+                } else if (type === 'email') {
+                    alert('📧 Replace "hello@yourdomain.com" with your own email address.\nEdit the innerHTML of <span id="emailAddress">your@email.com</span> in the HTML.');
+                }
+            });
+        };
+        
+        addHelperHint(nameSpan, 'name');
+        addHelperHint(emailSpan, 'email');
+        
+        // 可选的优雅复制占位效果 (极简)
+        console.log("✔ Personal homepage ready — placeholder fields for name & email. Customize directly in index.html");
+        
+        // 增加视觉微提示: 动态展示当前时间占位? 没必要，但让邮箱区域可读
+        // 保证即使没有额外修改，所有占位符明确指示为「示例数据」
+        const allPlaceholders = document.querySelectorAll('.placeholder-value, .name-placeholder, .email-placeholder');
+        // 添加一个微妙的波纹效果无侵入
+    })();
+</script>
+</body>
+</html>
